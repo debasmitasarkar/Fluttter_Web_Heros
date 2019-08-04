@@ -11,8 +11,6 @@ class HeroScreen extends StatefulWidget {
 }
 
 class _HeroScreenState extends State<HeroScreen> {
-  List<Map<String, String>> _heros = [];
-
   Widget _buildAppbar() {
     return AppBar(
       elevation: 0,
@@ -23,6 +21,13 @@ class _HeroScreenState extends State<HeroScreen> {
 
   @override
   Widget build(BuildContext context) {
+    _navigateToDetailsScreen(image) {
+      Navigator.push(context,
+          MaterialPageRoute(builder: (BuildContext context) {
+        return HeroDetailsScreen(image: image);
+      }));
+    }
+
     return Scaffold(
       appBar: _buildAppbar(),
       body: SingleChildScrollView(
@@ -33,11 +38,11 @@ class _HeroScreenState extends State<HeroScreen> {
             stream: Global().getData().asStream(),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               if (snapshot.hasData) {
-                snapshot.data.addAll(_heros);
                 return ListView.builder(
                     itemCount: snapshot.data.length,
                     itemBuilder: (BuildContext context, int index) {
                       return HeroCard(
+                        onTap: _navigateToDetailsScreen,
                         name: snapshot.data[index]['name'],
                         details: snapshot.data[index]['details'],
                         image: snapshot.data[index]['image'],
@@ -52,8 +57,7 @@ class _HeroScreenState extends State<HeroScreen> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Color(0xffCA2C68),
         child: Icon(Icons.add),
-        onPressed: () {
-        },
+        onPressed: () {},
       ),
     );
   }
