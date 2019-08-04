@@ -1,0 +1,17 @@
+{
+  "assets/images/iron_man.png": [
+    "assets/images/iron_man.png"
+  ],
+  "assets/images/thanos.png": [
+    "assets/images/thanos.png"
+  ],
+  "assets/images/thor.png": [
+    "assets/images/thanos.png"
+  ],
+  "assets/images/spider_man.png": [
+    "assets/images/thanos.png"
+  ],
+  "assets/images/captain_america.png": [
+    "assets/images/thanos.png"
+  ]
+}
