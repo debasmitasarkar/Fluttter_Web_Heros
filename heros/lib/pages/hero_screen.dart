@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:heros/pages/hero_details_screen.dart';
 import './hero.dart';
 import '../global.dart';
 
@@ -11,8 +12,6 @@ class HeroScreen extends StatefulWidget {
 
 class _HeroScreenState extends State<HeroScreen> {
   List<Map<String, String>> _heros = [];
-
-  
 
   Widget _buildAppbar() {
     return AppBar(
@@ -54,7 +53,6 @@ class _HeroScreenState extends State<HeroScreen> {
         backgroundColor: Color(0xffCA2C68),
         child: Icon(Icons.add),
         onPressed: () {
-          _showFormDialog();
         },
       ),
     );

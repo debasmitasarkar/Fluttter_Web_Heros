@@ -4,7 +4,8 @@ class HeroCard extends StatelessWidget {
   String name;
   String details;
   String image;
-  HeroCard({this.name, this.details, this.image});
+  Function onTap;
+  HeroCard({this.name, this.details, this.image, this.onTap});
 
   final regularTextStyle = TextStyle(
       color: const Color(0xffb6b2df),
@@ -19,15 +20,17 @@ class HeroCard extends StatelessWidget {
   _buildHeroThumbnail(assetImage) {
     return Positioned(
         top: -20,
-        child: Container(
-          margin: EdgeInsets.symmetric(vertical: 16.0),
-          alignment: FractionalOffset.centerLeft,
-          child: Image(
-            image: AssetImage(assetImage),
-            height: 120.0,
-            width: 120.0,
-          ),
-        ));
+        child: Hero(
+            tag: '$image',
+            child: Container(
+              margin: EdgeInsets.symmetric(vertical: 16.0),
+              alignment: FractionalOffset.centerLeft,
+              child: Image(
+                image: AssetImage(assetImage),
+                height: 120.0,
+                width: 120.0,
+              ),
+            )));
   }
 
   _buildHeroCardContent() {
@@ -71,18 +74,22 @@ class HeroCard extends StatelessWidget {
   }
 
   _buildHeroRow() {
-    return Container(
-        height: 120,
-        margin: const EdgeInsets.symmetric(
-          vertical: 16.0,
-          horizontal: 24.0,
-        ),
-        child: Stack(
-          children: <Widget>[
-            _buildHeroCard(),
-            _buildHeroThumbnail('assets/$image'),
-          ],
-        ));
+    return GestureDetector(
+        onTap: () {
+          onTap(image);
+        },
+        child: Container(
+            height: 120,
+            margin: const EdgeInsets.symmetric(
+              vertical: 16.0,
+              horizontal: 24.0,
+            ),
+            child: Stack(
+              children: <Widget>[
+                _buildHeroCard(),
+                _buildHeroThumbnail('assets/$image'),
+              ],
+            )));
   }
 
   @override
